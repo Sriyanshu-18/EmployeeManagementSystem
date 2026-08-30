@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Employee Management System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+
+    <!-- =========================================
+         LOGIN PAGE
+         ========================================= -->
+
+    <div id="loginPage" class="login-page">
+
+        <div class="login-card">
+
+            <h1>Employee Management System</h1>
+
+            <p>Please login to continue</p>
+
+
+            <form id="loginForm">
+
+
+                <!-- Username -->
+
+                <div class="form-field">
+
+                    <label for="loginUsername">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="loginUsername"
+                        placeholder="Enter username"
+                        required>
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-field password-field">
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <div class="password-input-wrapper">
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Enter password"
+                            required>
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="password-toggle"
+                            aria-label="Show password">
+
+                            👁
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Login Button -->
+
+                <button
+                    type="submit"
+                    class="primary-button login-button">
+
+                    Login
+
+                </button>
+
+            </form>
+
+
+            <p
+                id="loginError"
+                class="login-error">
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         MAIN APPLICATION
+         ========================================= -->
+
+    <div id="appPage" style="display: none;">
+
+
+        <!-- =========================================
+             HEADER
+             ========================================= -->
+
+        <header class="main-header">
+
+            <div class="header-content">
+
+
+                <div>
+
+                    <h1>
+                        Employee Management System
+                    </h1>
+
+                    <p>
+                        Manage your employees efficiently
+                    </p>
+
+                </div>
+
+
+                <div class="user-info">
+
+                    <div>
+
+                        <span id="loggedInUsername"></span>
+
+                        <span
+                            id="loggedInRole"
+                            class="role-badge">
+
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="logoutButton"
+                        class="logout-button">
+
+                        Logout
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================================
+             MAIN CONTENT
+             ========================================= -->
+
+        <main class="container">
+
+
+            <!-- =========================================
+                 DASHBOARD HEADER
+                 ========================================= -->
+
+            <section class="dashboard-card dashboard-header">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Employee Dashboard
+                        </h2>
+
+                        <p class="section-description">
+                            Manage employee information from one place.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="addEmployeeButton"
+                        class="primary-button">
+
+                        Add Employee
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================================
+                 STATISTICS
+                 ========================================= -->
+
+            <section
+                id="statisticsSection"
+                class="statistics-grid">
+
+
+                <div class="stat-card">
+
+                    <span>Total Employees</span>
+
+                    <h2 id="totalEmployees">
+                        0
+                    </h2>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>Active Employees</span>
+
+                    <h2 id="activeEmployees">
+                        0
+                    </h2>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>Inactive Employees</span>
+
+                    <h2 id="inactiveEmployees">
+                        0
+                    </h2>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>Total Departments</span>
+
+                    <h2 id="totalDepartments">
+                        0
+                    </h2>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =========================================
+                 ADD / EDIT EMPLOYEE FORM
+                 ========================================= -->
+
+            <section
+                id="employeeFormSection"
+                class="dashboard-card"
+                style="display: none;">
+
+
+                <div class="form-header">
+
+                    <h2 id="employeeFormTitle">
+                        Add Employee
+                    </h2>
+
+                </div>
+
+
+                <form id="employeeForm">
+
+
+                    <!-- Employee Code -->
+
+                    <div class="form-field">
+
+                        <label for="employeeCode">
+                            Employee Code
+                        </label>
+
+                        <input
+                            type="text"
+                            id="employeeCode"
+                            required>
+
+                    </div>
+
+
+                    <!-- First Name -->
+
+                    <div class="form-field">
+
+                        <label for="firstName">
+                            First Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            required>
+
+                    </div>
+
+
+                    <!-- Last Name -->
+
+                    <div class="form-field">
+
+                        <label for="lastName">
+                            Last Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="lastName"
+                            required>
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="form-field">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            required>
+
+                    </div>
+
+
+                    <!-- Phone -->
+
+                    <div class="form-field">
+
+                        <label for="phone">
+                            Phone
+                        </label>
+
+                        <input
+                            type="text"
+                            id="phone"
+                            maxlength="10"
+                            required>
+
+                    </div>
+
+
+                    <!-- Department -->
+
+                    <div class="form-field">
+
+                        <label for="employeeDepartment">
+                            Department
+                        </label>
+
+                        <input
+                            type="text"
+                            id="employeeDepartment"
+                            required>
+
+                    </div>
+
+
+                    <!-- Designation -->
+
+                    <div class="form-field">
+
+                        <label for="designation">
+                            Designation
+                        </label>
+
+                        <input
+                            type="text"
+                            id="designation"
+                            required>
+
+                    </div>
+
+
+                    <!-- Salary -->
+
+                    <div class="form-field">
+
+                        <label for="salary">
+                            Salary
+                        </label>
+
+                        <input
+                            type="number"
+                            id="salary"
+                            min="1"
+                            step="0.01"
+                            required>
+
+                    </div>
+
+
+                    <!-- Joining Date -->
+
+                    <div class="form-field">
+
+                        <label for="joiningDate">
+                            Joining Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="joiningDate"
+                            required>
+
+                    </div>
+
+
+                    <!-- Status -->
+
+                    <div class="form-field">
+
+                        <label for="employeeStatus">
+                            Status
+                        </label>
+
+                        <select
+                            id="employeeStatus"
+                            required>
+
+                            <option value="">
+                                Select Status
+                            </option>
+
+                            <option value="ACTIVE">
+                                ACTIVE
+                            </option>
+
+                            <option value="INACTIVE">
+                                INACTIVE
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Buttons -->
+
+                    <div class="form-buttons">
+
+                        <button
+                            type="submit"
+                            class="primary-button">
+
+                            Save Employee
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="cancelEmployeeButton"
+                            class="secondary-button">
+
+                            Cancel
+
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </section>
+
+
+
+            <!-- =========================================
+                 SEARCH AND SORT
+                 ========================================= -->
+
+            <section class="dashboard-card">
+
+
+                <div>
+
+                    <h2>
+                        Search Employees
+                    </h2>
+
+                    <p class="section-description">
+                        Filter, sort and manage employee records.
+                    </p>
+
+                </div>
+
+
+                <div class="search-controls">
+
+
+                    <!-- Department -->
+
+                    <div class="search-field">
+
+                        <label for="department">
+                            Department
+                        </label>
+
+                        <input
+                            type="text"
+                            id="department"
+                            placeholder="Department">
+
+                    </div>
+
+
+                    <!-- Status -->
+
+                    <div class="search-field">
+
+                        <label for="status">
+                            Status
+                        </label>
+
+                        <input
+                            type="text"
+                            id="status"
+                            placeholder="ACTIVE / INACTIVE">
+
+                    </div>
+
+
+                    <!-- Sort By -->
+
+                    <div class="search-field">
+
+                        <label for="sortBy">
+                            Sort By
+                        </label>
+
+                        <select id="sortBy">
+
+                            <option value="id">
+                                ID
+                            </option>
+
+                            <option value="firstName">
+                                First Name
+                            </option>
+
+                            <option value="lastName">
+                                Last Name
+                            </option>
+
+                            <option value="department">
+                                Department
+                            </option>
+
+                            <option value="designation">
+                                Designation
+                            </option>
+
+                            <option value="salary">
+                                Salary
+                            </option>
+
+                            <option value="joiningDate">
+                                Joining Date
+                            </option>
+
+                            <option value="status">
+                                Status
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Direction -->
+
+                    <div class="search-field">
+
+                        <label for="sortDirection">
+                            Direction
+                        </label>
+
+                        <select id="sortDirection">
+
+                            <option value="asc">
+                                Ascending
+                            </option>
+
+                            <option value="desc">
+                                Descending
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Buttons -->
+
+                    <div class="search-buttons">
+
+                        <button
+                            type="button"
+                            id="searchButton"
+                            class="primary-button">
+
+                            Search
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="resetButton"
+                            class="secondary-button">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================================
+                 EMPLOYEE LIST
+                 ========================================= -->
+
+            <section class="dashboard-card">
+
+
+                <!-- Employee List Header -->
+
+                <div class="employee-list-header">
+
+
+                    <div>
+
+                        <h2>
+                            Employee List
+                        </h2>
+
+                        <p class="section-description">
+                            View and manage employee records.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Page Size -->
+
+                    <div class="page-size-control">
+
+                        <label for="pageSize">
+                            Employees per page
+                        </label>
+
+                        <select id="pageSize">
+
+                            <option value="5">
+                                5
+                            </option>
+
+                            <option value="10">
+                                10
+                            </option>
+
+                            <option value="20">
+                                20
+                            </option>
+
+                            <option value="50">
+                                50
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Table -->
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Name</th>
+
+                                <th>Department</th>
+
+                                <th>Designation</th>
+
+                                <th>Salary</th>
+
+                                <th>Status</th>
+
+                                <th id="actionsHeader">
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="employeeTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     PAGINATION
+                     ========================================= -->
+
+                <div id="pagination">
+
+
+                    <button
+                        type="button"
+                        id="previousButton">
+
+                        Previous
+
+                    </button>
+
+
+                    <span id="pageInfo">
+
+                        Page 1
+
+                    </span>
+
+
+                    <button
+                        type="button"
+                        id="nextButton">
+
+                        Next
+
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
