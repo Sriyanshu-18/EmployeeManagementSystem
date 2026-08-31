@@ -73,5 +73,7 @@ Thumbs.db
 application-local.properties
 application-prod.properties
 
+
+
 # Local environment configuration
 src/main/resources/application-local.properties
