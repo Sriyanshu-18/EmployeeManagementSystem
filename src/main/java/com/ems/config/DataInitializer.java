@@ -19,23 +19,38 @@ public class DataInitializer {
 
         return args -> {
 
-            if (userRepository.findByUsername("admin").isEmpty()) {
+            User admin = userRepository
+                    .findByUsername("admin")
+                    .orElse(null);
 
-                User admin = new User(
+            if (admin == null) {
+
+                admin = new User(
                         "admin",
                         "admin@example.com",
                         passwordEncoder.encode("admin123"),
                         Role.ADMIN
                 );
 
-                userRepository.save(admin);
-
-                System.out.println("=================================");
                 System.out.println("DEFAULT ADMIN USER CREATED");
-                System.out.println("Username: admin");
-                System.out.println("=================================");
+
+            } else {
+
+                admin.setPassword(
+                        passwordEncoder.encode("admin123")
+                );
+
+                admin.setRole(Role.ADMIN);
+
+                System.out.println("DEFAULT ADMIN PASSWORD RESET");
             }
 
+            userRepository.save(admin);
+
+            System.out.println("=================================");
+            System.out.println("Username: admin");
+            System.out.println("Password reset successfully");
+            System.out.println("=================================");
         };
     }
 }
