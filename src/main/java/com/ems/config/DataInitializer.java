@@ -32,25 +32,31 @@ public class DataInitializer {
                         Role.ADMIN
                 );
 
+                userRepository.save(admin);
+
+                System.out.println("=================================");
                 System.out.println("DEFAULT ADMIN USER CREATED");
+                System.out.println("Username: admin");
+                System.out.println("Password: admin123");
+                System.out.println("=================================");
 
             } else {
 
+                // Force reset password temporarily
                 admin.setPassword(
                         passwordEncoder.encode("admin123")
                 );
 
                 admin.setRole(Role.ADMIN);
 
-                System.out.println("DEFAULT ADMIN PASSWORD RESET");
+                userRepository.save(admin);
+
+                System.out.println("=================================");
+                System.out.println("ADMIN PASSWORD RESET");
+                System.out.println("Username: admin");
+                System.out.println("Password: admin123");
+                System.out.println("=================================");
             }
-
-            userRepository.save(admin);
-
-            System.out.println("=================================");
-            System.out.println("Username: admin");
-            System.out.println("Password reset successfully");
-            System.out.println("=================================");
         };
     }
 }
