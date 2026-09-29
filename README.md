@@ -9,6 +9,9 @@ The system allows administrators to manage employee records while normal users h
 🌐 **Live Application:**  
 https://employee-management-system-ovmu.onrender.com
 
+For testing as a user Try:  Username-testuser
+                            Password-testuser123
+
 📖 **Swagger API Documentation:**  
 https://employee-management-system-ovmu.onrender.com/swagger-ui/index.html
 
